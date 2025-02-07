@@ -37,18 +37,27 @@
 			$("button").click(function(){
 			   var t = $('#temp').val();//celsius
 			   var u = $('#unit').val();
+
+			   if (validate(t)) {
+                convertTemperature(parseFloat(t), u);
+            }
+
+			});
+		});
 			   
 			   function validate(t){
-				if(isNaN(t)){
-					msg = "Please verify whether the temperature value is correct!!!";
-					alert(msg);
-					return;
-			   }
-			   if(!(t >= -100 && t <= 100)){
-					msg = "Tempurature entered (in Celsius) must be between 0 and 100 C'";
-					alert(msg);
-					return;
-			   }}
+				if (isNaN(t)) {
+           			 alert("Please verify whether the temperature value is correct!");
+            		return false;
+        	}
+       		 	if (!(t >= -100 && t <= 100)) {
+            		alert("Temperature entered (in Celsius) must be between -100 and 100°C");
+            		return false;
+        		}
+
+       				return true;
+    		}
+			
 			   
 			  function convertTemperature(t,u){
 				var t1;
@@ -65,10 +74,9 @@
 					u1 = "Kelvin";
 			   }
 			   
-			   alert("Temperature is "+t1+" in "+u1);
+			   $("#result").text("Temperature is "+t1+" in "+u1);
 			  }
-			});
-		});
+			
 	</script>
 </body>
 </html>
